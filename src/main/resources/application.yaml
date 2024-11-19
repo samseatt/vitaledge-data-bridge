@@ -1,0 +1,14 @@
+server:
+  port: 8081
+
+pipelines:
+  DataLoader:
+    endpoint: "http://dataloader-service/api/v1/ingest"
+    deliveryPath: "/data/catalog"
+    operations:
+      update_variant_annotations: "Variant annotations catalog update"
+
+  RxGen:
+    endpoint: "http://192.168.1.83:8082/api/v1/process"
+    operations:
+      annotate_vcf: "Annotate VCF file for patient"
